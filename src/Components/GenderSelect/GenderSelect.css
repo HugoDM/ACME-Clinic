@@ -1,21 +1,16 @@
-.InputDiv {
+.GenderSelect {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: fit-content;
+    width: 30%;
 }
 
-.InputLabel {
+.SelectLabel {
     font-weight: bold;
     font-size: x-large;
     margin-bottom: 0.2em;
 }
 
-.Input {
-    min-height: 30px;
-}
-
-::placeholder {
-    opacity: 0.4;
+.Select {
+    height: 90%;
     font-size: medium;
 }

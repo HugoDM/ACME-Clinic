@@ -1,3 +1,4 @@
+import './Button.css';
 
 interface ButtonProps {
     name: string;
@@ -9,7 +10,7 @@ export const Button = ({
     onClick,
 }: ButtonProps) => {
     return (
-        <button onClick={onClick} >
+        <button className='Button' onClick={onClick} >
             {name}
         </button>
     );

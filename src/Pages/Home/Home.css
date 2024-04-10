@@ -1,8 +1,23 @@
 .HomePage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
     background-color: rgb(90, 167, 255);
     height: 97vh;
     width: 100%;
+}
+
+.TopBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 20vh;
+    margin: 20px;
+}
+
+.CentralDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 70vh;
 }
