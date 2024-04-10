@@ -1,0 +1,9 @@
+.InputDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.InputLabel {
+    font-weight: bold;
+    margin-bottom: 0.2em;
+}

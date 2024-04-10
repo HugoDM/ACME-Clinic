@@ -1,0 +1,8 @@
+.HomePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(90, 167, 255);
+    height: 97vh;
+    width: 100%;
+}
