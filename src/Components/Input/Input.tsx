@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import React from 'react';
 import './Input.css';
 
 interface IInputProps {
@@ -17,8 +17,12 @@ export const Input = ({
     return (
         <div className='InputDiv'>
             <label className='InputLabel'>{label}</label>
-            <input className='Input' placeholder={placeholder} value={value} onChange={onChange}>
-            </input>
+            <input
+                className='Input'
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+            />
         </div>
     );
 };

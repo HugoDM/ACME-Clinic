@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { PatientGender } from "../../Models/Enums/PatientGender";
 import "./GenderSelect.css"
 

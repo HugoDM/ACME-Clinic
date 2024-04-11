@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
@@ -10,11 +11,13 @@ import { PatientStatus } from "../../Models/Enums/PatientStatus";
 interface RegisterPatientPopUpProps {
     open: boolean;
     onClose: () => void;
+    onChange: (patients: Patient[]) => void;
 }
 
 export const RegisterPatientPopUp = ({
     open,
-    onClose
+    onClose,
+    onChange
 }: RegisterPatientPopUpProps) => {
 
     const [name, setName] = useState("");
@@ -25,7 +28,7 @@ export const RegisterPatientPopUp = ({
     const [status, setStatus] = useState(PatientStatus.Active);
 
     const handleRegisterButton = () => {
-        var patients: Patient[] = JSON.parse(localStorage.getItem("PatientsList") ?? "") ?? [];
+        var patients: Patient[] = JSON.parse(localStorage.getItem("PatientsList")!) ?? [];
         var newPatient: Patient = {
             Address: address,
             BirthDate: birthDate,
@@ -34,8 +37,8 @@ export const RegisterPatientPopUp = ({
             Status: status,
             TaxNumber: taxNumber,
         };
-        console.log(patients);
         patients.push(newPatient);
+        onChange(patients);
         localStorage.setItem("PatientsList", JSON.stringify(patients));
         onClose();
     }

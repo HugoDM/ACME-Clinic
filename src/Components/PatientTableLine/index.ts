@@ -1,0 +1,1 @@
+export { PatientTableLine } from "./PatientTableLine";

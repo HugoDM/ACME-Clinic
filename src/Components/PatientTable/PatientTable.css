@@ -1,0 +1,15 @@
+.Table {
+    width: 100%;
+    vertical-align: text-top;
+    font-size: larger;
+    overflow: auto;
+}
+
+tr {
+    height: 50px;
+}
+
+td {
+    align-content: center;
+    text-align: center;
+}

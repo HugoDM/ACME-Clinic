@@ -1,0 +1,13 @@
+tr {
+    height: 50px;
+}
+
+td {
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td>button {
+    margin-left: 20%;
+}
