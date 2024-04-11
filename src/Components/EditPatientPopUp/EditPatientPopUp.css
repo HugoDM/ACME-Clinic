@@ -40,12 +40,5 @@
 .ButtonRegister {
     display: flex;
     justify-content: center;
-    flex-direction: column-reverse;
-    align-items: center;
     margin-top: 8%;
-}
-
-span {
-    color: red;
-    margin: 20px;
 }

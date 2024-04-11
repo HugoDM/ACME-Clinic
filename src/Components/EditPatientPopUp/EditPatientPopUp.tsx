@@ -1,48 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
-import "./RegisterPatientPopUp.css"
+import "./EditPatientPopUp.css"
 import { PatientGender } from "../../Models/Enums/PatientGender";
 import { GenderSelect } from "../GenderSelect";
 import { Patient } from "../../Models/Patient";
 import { PatientStatus } from "../../Models/Enums/PatientStatus";
-import { StatusSelect } from "../StatusSelect";
+import { StatusSelect } from "../StatusSelect/StatusSelect";
 
-interface RegisterPatientPopUpProps {
+interface EditPatientPopUpProps {
     open: boolean;
     onClose: () => void;
-    onChange: (patients: Patient[]) => void;
+    patient: Patient;
+    patientId: number
 }
 
-export const RegisterPatientPopUp = ({
+export const EditPatientPopUp = ({
     open,
     onClose,
-    onChange
-}: RegisterPatientPopUpProps) => {
+    patient,
+    patientId
+}: EditPatientPopUpProps) => {
 
-    const [name, setName] = useState("");
-    const [birthDate, setBirthDate] = useState("");
-    const [taxNumber, setTaxNumber] = useState("");
-    const [gender, setGender] = useState(PatientGender.Male);
-    const [address, setAddress] = useState("");
-    const [status, setStatus] = useState(PatientStatus.Active);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [name, setName] = useState(patient.Name);
+    const [birthDate, setBirthDate] = useState(patient.BirthDate);
+    const [taxNumber, setTaxNumber] = useState(patient.TaxNumber);
+    const [gender, setGender] = useState(patient.Gender == 0 ? PatientGender.Male : patient.Gender == 1 ? PatientGender.Female : PatientGender.Other);
+    const [address, setAddress] = useState(patient.Address);
+    const [status, setStatus] = useState(patient.Status == 0 ? PatientStatus.Active : PatientStatus.Inactive);
 
-    useEffect(() => {
-        setIsButtonDisabled(
-            name === "" ||
-            birthDate === "" ||
-            birthDate.length < 10 ||
-            taxNumber === "" ||
-            taxNumber.length < 14
-        );
-    }, [name, birthDate, taxNumber])
-
-    const handleRegisterButton = () => {
+    const handleUpdateButton = () => {
         var patients: Patient[] = JSON.parse(localStorage.getItem("PatientsList")!) ?? [];
-        var alreadyRegistered = false;
-        var newPatient: Patient = {
+        patients[patientId] = {
             Address: address,
             BirthDate: birthDate,
             Gender: gender,
@@ -50,20 +39,10 @@ export const RegisterPatientPopUp = ({
             Status: status,
             TaxNumber: taxNumber,
         };
-        patients.forEach(patient => {
-            if (patient.TaxNumber === newPatient.TaxNumber)
-                alreadyRegistered = true;
-        })
-        if (alreadyRegistered) {
-            setErrorMessage("CPF já cadastrado!");
-        } else {
-            setErrorMessage("");
-            patients.push(newPatient);
-            onChange(patients);
-            localStorage.setItem("PatientsList", JSON.stringify(patients));
-            onClose();
-        }
+        localStorage.setItem("PatientsList", JSON.stringify(patients));
+        onClose();
     }
+
     return (
         <div className="PopUp" style={{ display: open ? "flex" : "none" }}>
             <div className="PopUpContent">
@@ -79,7 +58,7 @@ export const RegisterPatientPopUp = ({
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
-                        <GenderSelect setGender={setGender} />
+                        <GenderSelect value={gender} setGender={setGender} />
                     </div>
                     <div className="FormLine">
                         <Input
@@ -103,11 +82,10 @@ export const RegisterPatientPopUp = ({
                             onChange={(e) => setAddress(e.target.value)}
                         />
 
-                        <StatusSelect setStatus={setStatus} />
+                        <StatusSelect value={status} setStatus={setStatus} />
                     </div>
                     <div className="ButtonRegister">
-                        <Button disabled={isButtonDisabled} name="Cadastrar" onClick={handleRegisterButton} />
-                        {errorMessage && <span>{errorMessage}</span>}
+                        <Button name="Alterar" onClick={handleUpdateButton} />
                     </div>
                 </div>
             </div>

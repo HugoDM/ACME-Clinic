@@ -1,4 +1,3 @@
-import React from "react";
 import { Patient } from "../../Models/Patient";
 import { PatientTableLine } from "../PatientTableLine";
 import "./PatientTable.css";

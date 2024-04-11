@@ -5,7 +5,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import "./PatientTableLine.css"
 import { Button } from "../Button";
-import React from "react";
+import { EditPatientPopUp } from "../EditPatientPopUp";
+import { useState } from "react";
 
 interface PatientTableLineProps {
     patient: Patient;
@@ -14,6 +15,8 @@ interface PatientTableLineProps {
 
 export const PatientTableLine = ({ patient, id }: PatientTableLineProps) => {
     var patients: Patient[] = JSON.parse(localStorage.getItem("PatientsList")!) ?? [];
+    const [popUpOpen, setPopUpOpen] = useState(false);
+
 
     const setPatientGender = (gender: PatientGender) => {
         switch (gender) {
@@ -41,6 +44,11 @@ export const PatientTableLine = ({ patient, id }: PatientTableLineProps) => {
         window.location.reload();
     };
 
+    const handleClosePopUp = () => {
+        setPopUpOpen(false);
+        window.location.reload();
+    }
+
     return (
         <tr>
             <td>{patient.Name}</td>
@@ -49,8 +57,9 @@ export const PatientTableLine = ({ patient, id }: PatientTableLineProps) => {
             <td>{patient.Address}</td>
             <td>{setPatientGender(patient.Gender)}</td>
             <td>{setPatientStatus(patient.Status)}</td>
-            <td><Button onClick={() => { }} icon={<EditIcon />} /></td>
+            <td><Button onClick={() => setPopUpOpen(true)} icon={<EditIcon />} /></td>
             <td><Button onClick={() => inactivePatient(id)} icon={<PersonOffIcon />} /></td>
+            <EditPatientPopUp open={popUpOpen} onClose={handleClosePopUp} patient={patient} patientId={id} />
         </tr>
     );
 }

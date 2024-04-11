@@ -21,11 +21,9 @@ export const Home = () => {
 
     const handlePopUpClose = () => {
         setPopUpOpen(false);
+        window.location.reload();
     }
 
-    useEffect(() => {
-        console.log(storedPatients);
-    }, [patients, storedPatients]);
 
     return (
         <div className="HomePage">
