@@ -1,11 +1,11 @@
 .Button {
-    height: 20%;
+    height: 25%;
     padding: 1px 10px;
     font-size: medium;
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     border-radius: 5px;
     min-height: 30px;
 }

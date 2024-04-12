@@ -17,6 +17,7 @@ export const Input = ({
         <div className='InputDiv'>
             <label className='InputLabel'>{label}</label>
             <input
+                data-testid={"input-"+label.replaceAll(" ", "-")}
                 className='Input'
                 placeholder={placeholder}
                 value={value}

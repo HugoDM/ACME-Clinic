@@ -60,8 +60,8 @@ export const EditPatientPopUp = ({
         <div className="PopUp" style={{ display: open ? "flex" : "none" }}>
             <div className="PopUpContent">
                 <div className="Header">
-                    Cadastrar Paciente
-                    <Button name="Cancelar" onClick={onClose} />
+                    Editar Paciente
+                    <Button testId="button-Cancelar" name="Cancelar" onClick={onClose} />
                 </div>
                 <div className="PatientInfo">
                     <div className="FormLine">
@@ -98,7 +98,7 @@ export const EditPatientPopUp = ({
                         <StatusSelect value={status} setStatus={setStatus} />
                     </div>
                     <div className="ButtonRegister">
-                        <Button disabled={isButtonDisabled} name="Alterar" onClick={handleUpdateButton} />
+                        <Button testId="button-Alterar" disabled={isButtonDisabled} name="Alterar" onClick={handleUpdateButton} />
                     </div>
                 </div>
             </div>

@@ -68,11 +68,11 @@ export const RegisterPatientPopUp = ({
         }
     }
     return (
-        <div className="PopUp" style={{ display: open ? "flex" : "none" }}>
+        <div data-testid="register-patient-popup" className="PopUp">
             <div className="PopUpContent">
                 <div className="Header">
                     Cadastrar Paciente
-                    <Button name="Cancelar" onClick={onClose} />
+                    <Button testId="button-Cancelar" name="Cancelar" onClick={onClose} />
                 </div>
                 <div className="PatientInfo">
                     <div className="FormLine">
@@ -109,7 +109,7 @@ export const RegisterPatientPopUp = ({
                         <StatusSelect setStatus={setStatus} />
                     </div>
                     <div className="ButtonRegister">
-                        <Button disabled={isButtonDisabled} name="Cadastrar" onClick={handleRegisterButton} />
+                        <Button testId="button-Cadastrar" disabled={isButtonDisabled} name="Cadastrar" onClick={handleRegisterButton} />
                         {errorMessage && <span>{errorMessage}</span>}
                     </div>
                 </div>

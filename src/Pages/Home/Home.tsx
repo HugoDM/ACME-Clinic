@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../../Components/Button";
 import { Input } from "../../Components/Input";
 import { PatientTable } from "../../Components/PatientTable";
@@ -27,20 +26,20 @@ export const Home = () => {
 
     return (
         <div className="HomePage">
-            <div className="Logo" />
-            <div className="TopBar">
+            <div data-testid="logo" className="Logo" />
+            <div data-testid="patient-management" className="PatientManagement">
                 <Input
                     label="Buscar Paciente"
                     placeholder="Escreva o nome do paciente"
                     value={nameFilter}
                     onChange={handleNameSearchChange}
                 />
-                <Button name="Cadastrar Paciente" onClick={() => setPopUpOpen(true)} icon={<PersonAddIcon />} color="#44e344" />
+                <Button testId="button-Cadastrar-Paciente" name="Cadastrar Paciente" onClick={() => setPopUpOpen(true)} icon={<PersonAddIcon />} color="#44e344" />
             </div>
-            <div className="CentralDiv">
+            <div data-testid="patients-table" className="PatientsTable">
                 <PatientTable patientsList={patients} filter={nameFilter} />
             </div>
-            <RegisterPatientPopUp open={popUpOpen} onClose={handlePopUpClose} onChange={setPatients} />
+            {popUpOpen && <RegisterPatientPopUp open={popUpOpen} onClose={handlePopUpClose} onChange={setPatients} />}
         </div>
     );
 };

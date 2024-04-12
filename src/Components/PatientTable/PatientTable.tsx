@@ -9,23 +9,25 @@ interface PatientTableProps {
 
 export const PatientTable = ({ patientsList = [], filter }: PatientTableProps) => {
     return (
-        <table className="Table">
-            <tr>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Nascimento</th>
-                <th>Endereço</th>
-                <th>Sexo</th>
-                <th>Status</th>
-                <th style={{ width: "100px" }}>Editar</th>
-                <th style={{ width: "100px" }}>Inativar</th>
-            </tr>
-            {
-                patientsList.map((patient, id) => {
-                    if (filter == "" || patient.Name.toLocaleLowerCase().includes(filter))
-                        return <PatientTableLine patient={patient} id={id} />;
-                })
-            }
+        <table data-testid="table" className="Table">
+            <tbody>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Nascimento</th>
+                    <th>Endereço</th>
+                    <th>Sexo</th>
+                    <th>Status</th>
+                    <th style={{ width: "100px" }}>Editar</th>
+                    <th style={{ width: "100px" }}>Inativar</th>
+                </tr>
+                {
+                    patientsList.map((patient, id) => {
+                        if (filter == "" || patient.Name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+                            return <PatientTableLine patient={patient} id={id} />;
+                    })
+                }
+            </tbody>
         </table>
     );
 };

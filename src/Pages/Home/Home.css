@@ -1,22 +1,24 @@
 .HomePage {
     background-image: url("../../../public/background.jpg");
+    background-size: cover;
     height: 100%;
     width: 100%;
     left: 0;
     top: 0;
     position: absolute;
+    min-width: 780px;
 }
 
 .Logo {
-    background-image: url("../../../public/Logo-Name.png");
+    background-image: url("../../../public/logo-name.png");
     position: absolute;
     height: 69px;
     width: 365px;
     left: 30px;
-    top: 30px;
+    top: 20px;
 }
 
-.TopBar {
+.PatientManagement {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,7 +27,7 @@
     margin: 20px 30px;
 }
 
-.CentralDiv {
+.PatientsTable {
     max-height: 72vh;
     max-width: 95%;
     margin: 2% 2.5%;

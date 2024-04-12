@@ -57,9 +57,9 @@ export const PatientTableLine = ({ patient, id }: PatientTableLineProps) => {
             <td>{patient.Address}</td>
             <td>{setPatientGender(patient.Gender)}</td>
             <td>{setPatientStatus(patient.Status)}</td>
-            <td><Button onClick={() => setPopUpOpen(true)} icon={<EditIcon />} color="#f7f78b" /></td>
-            <td><Button onClick={() => inactivePatient(id)} icon={<PersonOffIcon />} color="#e31818" /></td>
-            <EditPatientPopUp open={popUpOpen} onClose={handleClosePopUp} patient={patient} patientId={id} />
+            <td><Button testId="button-Editar" onClick={() => setPopUpOpen(true)} icon={<EditIcon />} color="#f7f78b" /></td>
+            <td><Button testId="button-Inativar" onClick={() => inactivePatient(id)} icon={<PersonOffIcon />} color="#e31818" /></td>
+            {popUpOpen &&<EditPatientPopUp open={popUpOpen} onClose={handleClosePopUp} patient={patient} patientId={id} />}
         </tr>
     );
 }
