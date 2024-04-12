@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import "./EditPatientPopUp.css"
@@ -7,6 +7,8 @@ import { GenderSelect } from "../GenderSelect";
 import { Patient } from "../../Models/Patient";
 import { PatientStatus } from "../../Models/Enums/PatientStatus";
 import { StatusSelect } from "../StatusSelect/StatusSelect";
+import { maskTaxNumber } from "../../Util/maskTaxNumber";
+import { maskDate } from "../../Util/maskDate";
 
 interface EditPatientPopUpProps {
     open: boolean;
@@ -28,6 +30,17 @@ export const EditPatientPopUp = ({
     const [gender, setGender] = useState(patient.Gender == 0 ? PatientGender.Male : patient.Gender == 1 ? PatientGender.Female : PatientGender.Other);
     const [address, setAddress] = useState(patient.Address);
     const [status, setStatus] = useState(patient.Status == 0 ? PatientStatus.Active : PatientStatus.Inactive);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+    useEffect(() => {
+        setIsButtonDisabled(
+            name === "" ||
+            birthDate === "" ||
+            birthDate.length < 10 ||
+            taxNumber === "" ||
+            taxNumber.length < 14
+        );
+    }, [name, birthDate, taxNumber])
 
     const handleUpdateButton = () => {
         var patients: Patient[] = JSON.parse(localStorage.getItem("PatientsList")!) ?? [];
@@ -65,13 +78,13 @@ export const EditPatientPopUp = ({
                             label="Data de Nascimento"
                             placeholder="dd/mm/aaaa"
                             value={birthDate}
-                            onChange={(e) => setBirthDate(e.target.value)}
+                            onChange={(e) => setBirthDate(maskDate(e.target.value))}
                         />
                         <Input
                             label="CPF"
                             placeholder="000.000.000-00"
                             value={taxNumber}
-                            onChange={(e) => setTaxNumber(e.target.value)}
+                            onChange={(e) => setTaxNumber(maskTaxNumber(e.target.value))}
                         />
                     </div>
                     <div className="FormLine">
@@ -85,7 +98,7 @@ export const EditPatientPopUp = ({
                         <StatusSelect value={status} setStatus={setStatus} />
                     </div>
                     <div className="ButtonRegister">
-                        <Button name="Alterar" onClick={handleUpdateButton} />
+                        <Button disabled={isButtonDisabled} name="Alterar" onClick={handleUpdateButton} />
                     </div>
                 </div>
             </div>

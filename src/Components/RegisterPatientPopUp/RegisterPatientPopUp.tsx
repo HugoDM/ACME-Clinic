@@ -7,6 +7,8 @@ import { GenderSelect } from "../GenderSelect";
 import { Patient } from "../../Models/Patient";
 import { PatientStatus } from "../../Models/Enums/PatientStatus";
 import { StatusSelect } from "../StatusSelect";
+import { maskTaxNumber } from "../../Util/maskTaxNumber";
+import { maskDate } from "../../Util/maskDate";
 
 interface RegisterPatientPopUpProps {
     open: boolean;
@@ -39,23 +41,6 @@ export const RegisterPatientPopUp = ({
         );
     }, [name, birthDate, taxNumber])
 
-    const handleTaxNumber = (cpf: string) => {
-        setTaxNumber(
-            cpf
-                .replace(/\D/g, "")
-                .replace(/(\d{3})(\d{3})(\d{3})(\d{2})(\d*)/g, "$1.$2.$3-$4")
-        );
-    }
-
-    const handleBirthDate = (date: string) => {
-        setBirthDate(
-            date
-                .replace(/\D/g, "")
-                .replace(/(\d{2})(\d+)/, "$1/$2")
-                .replace(/(\d{2})(\d+)/, "$1/$2")
-                .replace(/(\d{4})(\d*)/, "$1")
-        );
-    }
 
     const handleRegisterButton = () => {
         var patients: Patient[] = JSON.parse(localStorage.getItem("PatientsList")!) ?? [];
@@ -104,13 +89,13 @@ export const RegisterPatientPopUp = ({
                             label="Data de Nascimento"
                             placeholder="dd/mm/aaaa"
                             value={birthDate}
-                            onChange={(e) => handleBirthDate(e.target.value)}
+                            onChange={(e) => setBirthDate(maskDate(e.target.value))}
                         />
                         <Input
                             label="CPF"
                             placeholder="000.000.000-00"
                             value={taxNumber}
-                            onChange={(e) => handleTaxNumber(e.target.value)}
+                            onChange={(e) => setTaxNumber(maskTaxNumber(e.target.value))}
                         />
                     </div>
                     <div className="FormLine">
