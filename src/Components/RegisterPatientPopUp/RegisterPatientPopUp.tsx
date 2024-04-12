@@ -39,6 +39,24 @@ export const RegisterPatientPopUp = ({
         );
     }, [name, birthDate, taxNumber])
 
+    const handleTaxNumber = (cpf: string) => {
+        setTaxNumber(
+            cpf
+                .replace(/\D/g, "")
+                .replace(/(\d{3})(\d{3})(\d{3})(\d{2})(\d*)/g, "$1.$2.$3-$4")
+        );
+    }
+
+    const handleBirthDate = (date: string) => {
+        setBirthDate(
+            date
+                .replace(/\D/g, "")
+                .replace(/(\d{2})(\d+)/, "$1/$2")
+                .replace(/(\d{2})(\d+)/, "$1/$2")
+                .replace(/(\d{4})(\d*)/, "$1")
+        );
+    }
+
     const handleRegisterButton = () => {
         var patients: Patient[] = JSON.parse(localStorage.getItem("PatientsList")!) ?? [];
         var alreadyRegistered = false;
@@ -86,13 +104,13 @@ export const RegisterPatientPopUp = ({
                             label="Data de Nascimento"
                             placeholder="dd/mm/aaaa"
                             value={birthDate}
-                            onChange={(e) => setBirthDate(e.target.value)}
+                            onChange={(e) => handleBirthDate(e.target.value)}
                         />
                         <Input
                             label="CPF"
                             placeholder="000.000.000-00"
                             value={taxNumber}
-                            onChange={(e) => setTaxNumber(e.target.value)}
+                            onChange={(e) => handleTaxNumber(e.target.value)}
                         />
                     </div>
                     <div className="FormLine">

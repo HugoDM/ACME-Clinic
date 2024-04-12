@@ -17,8 +17,8 @@ export const PatientTable = ({ patientsList = [], filter }: PatientTableProps) =
                 <th>Endereço</th>
                 <th>Sexo</th>
                 <th>Status</th>
-                <th>Editar</th>
-                <th>Inativar</th>
+                <th style={{ width: "100px" }}>Editar</th>
+                <th style={{ width: "100px" }}>Inativar</th>
             </tr>
             {
                 patientsList.map((patient, id) => {

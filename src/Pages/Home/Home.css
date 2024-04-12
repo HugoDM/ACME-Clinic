@@ -1,7 +1,19 @@
 .HomePage {
-    background-color: rgb(90, 167, 255);
-    height: 96vh;
+    background-image: url("../../../public/background.jpg");
+    height: 100%;
     width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.Logo {
+    background-image: url("../../../public/Logo-Name.png");
+    position: absolute;
+    height: 69px;
+    width: 365px;
+    left: 30px;
+    top: 30px;
 }
 
 .TopBar {
@@ -10,11 +22,30 @@
     justify-content: space-between;
     align-items: flex-end;
     height: 20vh;
-    margin: 20px;
+    margin: 20px 30px;
 }
 
 .CentralDiv {
-    max-height: 75vh;
-    background-color: aqua;
+    max-height: 72vh;
+    max-width: 95%;
+    margin: 2% 2.5%;
+    padding-bottom: 5px;
     overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

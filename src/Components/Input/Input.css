@@ -13,6 +13,8 @@
 
 .Input {
     min-height: 30px;
+    font-size: medium;
+    border-radius: 5px;
 }
 
 ::placeholder {

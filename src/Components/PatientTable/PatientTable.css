@@ -3,10 +3,18 @@
     vertical-align: text-top;
     font-size: larger;
     overflow: auto;
+    background-color: aliceblue;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 tr {
     height: 50px;
+}
+
+th,
+td {
+    border-bottom: 1px solid #a9a9a947;
 }
 
 td {

@@ -27,6 +27,7 @@ export const Home = () => {
 
     return (
         <div className="HomePage">
+            <div className="Logo" />
             <div className="TopBar">
                 <Input
                     label="Buscar Paciente"
@@ -34,7 +35,7 @@ export const Home = () => {
                     value={nameFilter}
                     onChange={handleNameSearchChange}
                 />
-                <Button name="Cadastrar Paciente" onClick={() => setPopUpOpen(true)} icon={<PersonAddIcon />} />
+                <Button name="Cadastrar Paciente" onClick={() => setPopUpOpen(true)} icon={<PersonAddIcon />} color="#44e344" />
             </div>
             <div className="CentralDiv">
                 <PatientTable patientsList={patients} filter={nameFilter} />
